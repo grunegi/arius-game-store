@@ -111,3 +111,19 @@ export async function featuredGames() {
 
   return data;
 }
+
+
+{/*4 games for new release part*/}
+export async function newReleases() {
+  const { data, error } = await supabase
+    .from("games")
+    .select("*")
+    .order("release_date", { ascending: false })
+    .limit(4);
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
+}
