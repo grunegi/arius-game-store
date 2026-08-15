@@ -227,7 +227,7 @@ export default function Navbar() {
                     </Link>
 
                     <Link
-                      href="/settings"
+                      href="/setting"
                       onClick={() => setOpenProfile(false)}
                       className="flex items-center gap-3 px-4 py-3 text-sm text-zinc-300 hover:bg-zinc-800 transition"
                     >

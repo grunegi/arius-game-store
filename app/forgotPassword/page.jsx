@@ -17,11 +17,6 @@ export default function ForgotPassword() {
 
     const data = await emailCheck(email);
 
-    console.log("DATA:", data);
-    console.log("TYPE:", typeof data);
-    console.log("IS ARRAY:", Array.isArray(data));
-    console.log("LENGTH:", data?.length);
-
     if (data.length === 0) {
       console.log("not a valid email");
 
