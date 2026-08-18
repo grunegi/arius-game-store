@@ -164,7 +164,7 @@ export default function Cart() {
                         src={games.cover_image || "/images/placeholder.jfif"}
                         alt={games.name || "Game"}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                       />
                     </div>
 

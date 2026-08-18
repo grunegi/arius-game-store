@@ -24,13 +24,13 @@ export default async function SearchResult({ params }) {
         <>
           {game.map((game) => (
             <div key={game.id}>
-              <div className="group overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition-all duration-300 hover:-translate-y-1">
-                <div className="relative h-60 overflow-hidden">
+              <div className="relative group overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition-all duration-300 hover:-translate-y-1">
+                <div className="relative aspect-3/4 overflow-hidden">
                   <Image
                     src={game.cover_image}
                     alt={game.name}
                     fill
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="object-cover transition duration-500 group-hover:scale-105"
                   />
 
                   <div className="absolute top-3 left-3">
@@ -59,7 +59,7 @@ export default async function SearchResult({ params }) {
                     </span>
 
                     <Link href={`/gameDetail/${game.slug}`}>
-                      <button className="px-4 py-2 rounded-lg bg-lime-800 hover:bg-lime-600 text-white font-medium transition">
+                      <button className="px-4 py-2 rounded-lg bg-purple-800 hover:bg-purple-600 text-white font-medium transition">
                         View Details
                       </button>
                     </Link>

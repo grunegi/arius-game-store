@@ -107,13 +107,13 @@ export default function GameDetail({ params }) {
           {/* Top Section */}
           <section className="grid lg:grid-cols-[2fr_1fr] gap-6">
             {/* Image */}
-            <div className="overflow-hidden rounded-2xl border border-zinc-800 relative h-137.5">
+            <div className="relative overflow-hidden aspect-square object-cover object-center rounded-2xl border border-zinc-800 h-137.5">
               <Image
                 src={coverImage}
                 alt={game.name}
                 fill
                 loading="eager"
-                className="object-cover bg-zinc-900"
+                className="bg-zinc-900 object-cover"
                 priority
                 onError={(e) => {
                   e.target.src = "/images/placeholder.jfif";
@@ -123,13 +123,13 @@ export default function GameDetail({ params }) {
 
             {/* Info */}
             <aside className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
-              <div className="relative w-full h-48 rounded-xl mb-6 overflow-hidden">
+              <div className="relative aspect-0.5/0.5 rounded-xl mb-6 overflow-hidden">
                 <Image
                   src={coverImage}
                   alt={game.name}
                   fill
                   loading="eager"
-                  className="object-cover"
+                  className="relative object-cover"
                   onError={(e) => {
                     e.target.src = "/images/placeholder.jfif";
                   }}
@@ -199,7 +199,7 @@ export default function GameDetail({ params }) {
                 onClick={handleAddToCart}
                 className="
                   px-8 py-3 rounded-xl font-medium transition
-                  bg-lime-800 hover:bg-lime-600
+                  bg-purple-800 hover:bg-purple-600
                   disabled:bg-zinc-700
                   disabled:cursor-not-allowed"
               >

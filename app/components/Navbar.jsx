@@ -12,6 +12,8 @@ import {
   Package,
   Settings,
   LogOut,
+  ChevronRight,
+  ArrowLeft,
 } from "lucide-react";
 
 import Link from "next/link";
@@ -24,7 +26,11 @@ export default function Navbar() {
   const isOnline = useOnlineStatus();
   const [openProfile, setOpenProfile] = useState(false);
   const [openCategory, setOpenCategory] = useState(false);
-  const [category, setCategory] = useState("");
+
+  // اضافه شد
+  const [openGameCategories, setOpenGameCategories] = useState(false);
+
+  const [category, setCategory] = useState([]);
 
   const isLoged = useAuthStore((state) => state.isLoggedIn);
   const user = useAuthStore((state) => state.user);
@@ -101,10 +107,16 @@ export default function Navbar() {
           {/* Categories Dropdown */}
           <div className="relative">
             <button
-              onClick={() => setOpenCategory(!openCategory)}
+              onClick={() => {
+                setOpenCategory(!openCategory);
+
+                // اضافه شد
+                setOpenGameCategories(false);
+              }}
               className="flex items-center gap-1 px-3 py-2 text-sm text-zinc-300 rounded-lg hover:bg-zinc-800 hover:text-white transition"
             >
               Categories
+
               <span
                 className={`transition-transform duration-200 ${
                   openCategory ? "rotate-180" : ""
@@ -118,25 +130,86 @@ export default function Navbar() {
               <>
                 {/* overlay */}
                 <div
-                  onClick={() => setOpenCategory(false)}
+                  onClick={() => {
+                    setOpenCategory(false);
+
+                    // اضافه شد
+                    setOpenGameCategories(false);
+                  }}
                   className="fixed inset-0 z-40"
                 />
 
                 {/* dropdown */}
                 <div className="absolute right-0 z-50 mt-2 w-52 rounded-xl border border-zinc-800 bg-zinc-900 shadow-xl">
-                  <div className="p-2">
-                    {category.map((cat) => (
-                      <Link
-                        key={cat}
-                        href={`/category/${cat}`}
-                        onClick={() => setOpenCategory(false)}
+                  
+                  {!openGameCategories ? (
+                    <div className="p-2">
+
+                      {/* Games */}
+                      <button
+                        onClick={() => setOpenGameCategories(true)}
+                        className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition"
                       >
-                        <div className="rounded-lg px-3 py-2 text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition">
-                          {cat}
-                        </div>
+                        <span>Games</span>
+
+                        <ChevronRight
+                          size={16}
+                          className="text-zinc-500"
+                        />
+                      </button>
+
+                      {/* Products */}
+                      <Link
+                        href="/products"
+                        onClick={() => {
+                          setOpenCategory(false);
+                          setOpenGameCategories(false);
+                        }}
+                        className="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition"
+                      >
+                        <span>Products</span>
+
+                        <ChevronRight
+                          size={16}
+                          className="text-zinc-500"
+                        />
                       </Link>
-                    ))}
-                  </div>
+
+                    </div>
+                  ) : (
+                    <div className="p-2">
+
+                      {/* Back */}
+                      <button
+                        onClick={() => setOpenGameCategories(false)}
+                        className="mb-1 flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white transition"
+                      >
+                        <ArrowLeft size={15} />
+
+                        <span>Games</span>
+                      </button>
+
+                      <div className="border-t border-zinc-800 my-1" />
+
+                      {/* Game Categories */}
+                      {category.map((cat) => (
+                        <Link
+                          key={cat}
+                          href={`/category/${cat}`}
+                          onClick={() => {
+                            setOpenCategory(false);
+                            setOpenGameCategories(false);
+                          }}
+                        >
+                          <div className="rounded-lg px-3 py-2 text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition">
+                            {cat}
+                          </div>
+                        </Link>
+                      ))}
+
+                    </div>
+                  )}
+
                 </div>
               </>
             )}
@@ -172,7 +245,10 @@ export default function Navbar() {
                     {/* User */}
                     <div className="flex items-center gap-3 border-b border-zinc-800 px-4 py-4">
                       <Image
-                        src={user.avatar_url || "/images/default-avatar.png"}
+                        src={
+                          user.avatar_url ||
+                          "/images/default-avatar.png"
+                        }
                         alt={user.username}
                         width={45}
                         height={45}
@@ -184,7 +260,9 @@ export default function Navbar() {
                           {formatUsername(user.username)}
                         </p>
 
-                        <p className="text-xs text-zinc-500">{user.email}</p>
+                        <p className="text-xs text-zinc-500">
+                          {user.email}
+                        </p>
                       </div>
                     </div>
 

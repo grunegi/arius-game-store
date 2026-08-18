@@ -127,3 +127,101 @@ export async function newReleases() {
 
   return data;
 }
+
+
+{/*get all products*/}
+export async function getProducts() {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return data || [];
+}
+
+
+{/*get 4 accessory for main page of the site*/}
+export async function getHomeProducts() {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .order("created_at", { ascending: false })
+    .limit(4);
+
+  if (error) throw error;
+  return data || [];
+}
+
+
+{/*update and create public url for games images , it will be used only ones*/}
+export async function updateAllGameCoverImages() {
+  const { data: games, error: gamesError } = await supabase
+    .from("games")
+    .select("id, name, slug");
+
+  if (gamesError) {
+    throw gamesError;
+  }
+
+  if (!games?.length) {
+    return [];
+  }
+
+  const updatedGames = [];
+
+  for (const game of games) {
+    let publicUrl = null;
+
+    for (const extension of ["jpg"]) {
+      const filePath = `game-images/${game.slug}.${extension}`;
+
+      const { data } = supabase.storage
+        .from("avatars")
+        .getPublicUrl(filePath);
+
+      const url = data?.publicUrl;
+
+      if (!url) continue;
+
+      try {
+        const response = await fetch(url, {
+          method: "HEAD",
+        });
+
+        if (response.ok) {
+          publicUrl = url;
+          break;
+        }
+      } catch {
+        // Try next extension
+      }
+    }
+
+    // No image found for this game
+    if (!publicUrl) {
+      continue;
+    }
+
+    const { data, error } = await supabase
+      .from("games")
+      .update({
+        cover_image: publicUrl,
+      })
+      .eq("id", game.id)
+      .select("id, name, slug, cover_image")
+      .single();
+
+    if (error) {
+      console.error(`Failed to update ${game.slug}:`, error);
+      continue;
+    }
+
+    updatedGames.push(data);
+  }
+
+  return updatedGames;
+}
+
+
+

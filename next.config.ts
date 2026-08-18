@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "cvexighpuikchnnxammq.supabase.co", // ✅ فقط نام دامنه (بدون https://)
+        hostname: "cvexighpuikchnnxammq.supabase.co"
       },
     ],
   },

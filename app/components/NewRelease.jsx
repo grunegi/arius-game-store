@@ -39,7 +39,7 @@ export default function NewReleases({ games }) {
             return (
               <Link
                 key={game.id}
-                href={`/games/${game.slug}`}
+                href={`/gameDetail/${game.slug}`}
                 className={`group flex items-center gap-5 p-4 transition hover:bg-zinc-800/60 md:p-5 ${
                   index !== 0 ? "border-t border-zinc-800" : ""
                 }`}

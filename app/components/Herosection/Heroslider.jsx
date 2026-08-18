@@ -28,7 +28,12 @@ export default function Heroslider({ games = [] }) {
       <div className="relative w-full max-w-sm overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/70 p-4 backdrop-blur">
         {/* Cover */}
         <div className="relative h-100 overflow-hidden rounded-2xl bg-zinc-800">
-          <Image src={game.cover_image} alt={game.name} fill loading="eager" />
+          <Image
+           src={game.cover_image} 
+           alt={game.name} fill 
+           loading="eager"
+           quality={80}
+           />
           <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-transparent to-transparent" />
         </div>
 
