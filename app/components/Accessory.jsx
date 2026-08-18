@@ -48,7 +48,7 @@ export default function AccessoriesSection({ products }) {
               href="/accessories"
               className="group overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 transition duration-300 hover:-translate-y-1 hover:border-purple-500/40"
             >
-              <div className="relative h-36 w-full overflow-hidden">
+              <div className="relative h-45 w-full overflow-hidden">
                 <Image
                   src={p.cover_image || "/images/placeholder.jfif"}
                   alt={p.name}
@@ -93,7 +93,7 @@ export default function AccessoriesSection({ products }) {
                         ${p.price}
                       </span>
                     )}
-                    <span className="font-bold text-purple-400">${price}</span>
+                    <span className="font-bold text-green-400">${price}</span>
                   </div>
                 </div>
               </div>

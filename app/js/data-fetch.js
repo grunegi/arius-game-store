@@ -225,3 +225,75 @@ export async function updateAllGameCoverImages() {
 
 
 
+
+
+export async function updateAllProductCoverImages() {
+  const { data: products, error: productsError } = await supabase
+    .from("products")
+    .select("id, name, slug");
+
+  if (productsError) {
+    throw productsError;
+  }
+
+  if (!products?.length) {
+    return [];
+  }
+
+  const updatedProducts = [];
+
+  for (const product of products) {
+    let publicUrl = null;
+
+    for (const extension of ["jpg"]) {
+      const filePath = `product-images/${product.slug}.${extension}`;
+
+      const { data } = supabase.storage
+        .from("avatars")
+        .getPublicUrl(filePath);
+
+      const url = data?.publicUrl;
+
+      if (!url) continue;
+
+      try {
+        const response = await fetch(url, {
+          method: "HEAD",
+        });
+
+        if (response.ok) {
+          publicUrl = url;
+          break;
+        }
+      } catch {
+        // Try next extension
+      }
+    }
+
+    // No image found for this product
+    if (!publicUrl) {
+      continue;
+    }
+
+    const { data, error } = await supabase
+      .from("products")
+      .update({
+        cover_image: publicUrl,
+      })
+      .eq("id", product.id)
+      .select("id, name, slug, cover_image")
+      .single();
+
+    if (error) {
+      console.error(`Failed to update ${product.slug}:`, error);
+      continue;
+    }
+
+    updatedProducts.push(data);
+  }
+
+  return updatedProducts;
+}
+
+
+

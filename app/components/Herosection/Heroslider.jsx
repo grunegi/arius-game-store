@@ -40,7 +40,7 @@ export default function Heroslider({ games = [] }) {
         {/* Content */}
         <div className="mt-5">
           <span className="rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs text-purple-400">
-            Featured Game
+            Best Sells
           </span>
           <h3 className="mt-3 text-2xl font-bold">{game.name}</h3>
           <p className="mt-1 text-sm text-zinc-400">{game.genre}</p>

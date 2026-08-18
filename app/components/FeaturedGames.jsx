@@ -45,9 +45,7 @@ export default function FeaturedGames({ games }) {
                   aria-label={`View ${game.name}`}
                 />
 
-                {/* محتوا */}
                 <div className="pointer-events-none relative z-10">
-                  {/* Image */}
                   <div className="relative aspect-3/4 overflow-hidden">
                     <Image
                       src={image}
@@ -56,16 +54,13 @@ export default function FeaturedGames({ games }) {
                       className="object-cover transition duration-500 group-hover:scale-105"
                     />
 
-                    {/* Gradient */}
                     <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/10 to-transparent" />
 
-                    {/* Rating */}
                     <div className="absolute right-3 top-3 rounded-lg bg-black/70 px-2.5 py-1 text-sm font-medium text-white backdrop-blur-sm">
                       ⭐ {game.rating ?? "N/A"}
                     </div>
                   </div>
 
-                  {/* Info */}
                   <div className="p-4">
                     <h3 className="truncate text-lg font-semibold text-white">
                       {game.name}

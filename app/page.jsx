@@ -7,7 +7,6 @@ import {
   featuredGames, 
   newReleases, 
   getHomeProducts,
-  updateGameCoverImage
 } from "@/app/js/data-fetch";
 
 

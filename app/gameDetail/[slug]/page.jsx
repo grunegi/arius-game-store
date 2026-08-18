@@ -107,7 +107,7 @@ export default function GameDetail({ params }) {
           {/* Top Section */}
           <section className="grid lg:grid-cols-[2fr_1fr] gap-6">
             {/* Image */}
-            <div className="relative overflow-hidden aspect-square object-cover object-center rounded-2xl border border-zinc-800 h-137.5">
+            <div className="relative overflow-hidden object-cover object-center rounded-2xl border border-zinc-800 h-137.5">
               <Image
                 src={coverImage}
                 alt={game.name}
