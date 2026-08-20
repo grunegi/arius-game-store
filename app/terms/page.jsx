@@ -13,7 +13,7 @@ export default function TermsPage() {
     <main className="min-h-screen bg-zinc-950 px-4 py-16 text-white">
       <div className="mx-auto max-w-4xl">
 
-        {/* Header */}
+      
         <section className="text-center">
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-600/10">
             <FileText className="text-purple-400" size={32} />
@@ -33,10 +33,8 @@ export default function TermsPage() {
           </p>
         </section>
 
-        {/* Content */}
         <div className="mt-14 space-y-5">
 
-          {/* Introduction */}
           <section className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6 md:p-8">
             <h2 className="text-xl font-semibold">
               1. Introduction
@@ -49,7 +47,6 @@ export default function TermsPage() {
             </p>
           </section>
 
-          {/* Account */}
           <section className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6 md:p-8">
             <div className="flex items-center gap-3">
               <User className="text-purple-400" size={22} />
@@ -70,7 +67,6 @@ export default function TermsPage() {
             </p>
           </section>
 
-          {/* Shopping */}
           <section className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6 md:p-8">
             <div className="flex items-center gap-3">
               <ShoppingCart className="text-green-400" size={22} />
@@ -91,7 +87,6 @@ export default function TermsPage() {
             </p>
           </section>
 
-          {/* Payments */}
           <section className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6 md:p-8">
             <div className="flex items-center gap-3">
               <CreditCard className="text-yellow-400" size={22} />
@@ -111,7 +106,6 @@ export default function TermsPage() {
             </p>
           </section>
 
-          {/* Content */}
           <section className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6 md:p-8">
             <h2 className="text-xl font-semibold">
               5. Website Content
@@ -123,8 +117,6 @@ export default function TermsPage() {
               claim ownership of third-party intellectual property.
             </p>
           </section>
-
-          {/* Privacy */}
           <section className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6 md:p-8">
             <div className="flex items-center gap-3">
               <ShieldCheck className="text-blue-400" size={22} />
@@ -140,7 +132,6 @@ export default function TermsPage() {
             </p>
           </section>
 
-          {/* Changes */}
           <section className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6 md:p-8">
             <div className="flex items-center gap-3">
               <RefreshCcw className="text-purple-400" size={22} />
@@ -156,7 +147,7 @@ export default function TermsPage() {
             </p>
           </section>
 
-          {/* Contact */}
+          
           <section className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6 md:p-8">
             <h2 className="text-xl font-semibold">
               8. Contact
@@ -170,7 +161,6 @@ export default function TermsPage() {
 
         </div>
 
-        {/* Footer CTA */}
         <div className="mt-10 text-center">
           <p className="text-sm text-zinc-500">
             By using Arius, you acknowledge that you have read and understood

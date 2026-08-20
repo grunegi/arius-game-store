@@ -87,7 +87,6 @@ export default function GameDetail({ params }) {
           message: `${game.name} successfully added to your cart.`,
         });
       }
-      
     } catch (error) {
       console.error("Error adding to cart:", error);
       setStatus({
@@ -104,9 +103,7 @@ export default function GameDetail({ params }) {
     <div>
       <main className="min-h-screen bg-zinc-950 text-white">
         <div className="max-w-7xl mx-auto px-6 py-10">
-          {/* Top Section */}
           <section className="grid lg:grid-cols-[2fr_1fr] gap-6">
-            {/* Image */}
             <div className="relative overflow-hidden object-cover object-center rounded-2xl border border-zinc-800 h-137.5">
               <Image
                 src={coverImage}
@@ -121,7 +118,6 @@ export default function GameDetail({ params }) {
               />
             </div>
 
-            {/* Info */}
             <aside className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
               <div className="relative aspect-0.5/0.5 rounded-xl mb-6 overflow-hidden">
                 <Image
@@ -170,7 +166,6 @@ export default function GameDetail({ params }) {
             </aside>
           </section>
 
-          {/* Purchase Box */}
           <section className="mt-8">
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 flex flex-col md:flex-row justify-between items-center gap-5">
               <div>
@@ -203,16 +198,15 @@ export default function GameDetail({ params }) {
                   disabled:bg-zinc-700
                   disabled:cursor-not-allowed"
               >
-                {game.stock <= 0 
-                  ? "Out Of Stock" 
-                  : isAdding 
-                  ? "Adding..." 
-                  : "Add To Cart"}
+                {game.stock <= 0
+                  ? "Out Of Stock"
+                  : isAdding
+                    ? "Adding..."
+                    : "Add To Cart"}
               </button>
             </div>
           </section>
 
-          {/* About Game */}
           <section className="mt-8">
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
               <h2 className="text-2xl font-semibold mb-5">About Game</h2>

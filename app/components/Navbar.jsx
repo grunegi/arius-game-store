@@ -27,7 +27,6 @@ export default function Navbar() {
   const [openProfile, setOpenProfile] = useState(false);
   const [openCategory, setOpenCategory] = useState(false);
 
-  // اضافه شد
   const [openGameCategories, setOpenGameCategories] = useState(false);
 
   const [category, setCategory] = useState([]);
@@ -72,7 +71,6 @@ export default function Navbar() {
   return (
     <nav className="relative z-100 w-full border-b border-zinc-800 bg-zinc-900/80 backdrop-blur-md">
       <div className="flex h-16 items-center px-6 md:px-8">
-        {/* Logo */}
         <Link href="/" className="mr-6 flex items-center">
           <Image
             className="hover:rotate-12 transition-transform duration-200"
@@ -83,40 +81,32 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Search (center grow) */}
         <div className="hidden md:flex flex-1 max-w-xl">
           <Search />
         </div>
 
-        {/* Right Side */}
         <div className="ml-auto flex items-center gap-2 md:gap-3">
-          {/* Home */}
           <Link href="/">
             <button className="px-3 py-2 text-sm text-zinc-300 rounded-lg hover:bg-zinc-800 hover:text-white transition">
               Home
             </button>
           </Link>
 
-          {/* Games */}
           <Link href="/games">
             <button className="px-3 py-2 text-sm text-zinc-300 rounded-lg hover:bg-zinc-800 hover:text-white transition">
               Games
             </button>
           </Link>
 
-          {/* Categories Dropdown */}
           <div className="relative">
             <button
               onClick={() => {
                 setOpenCategory(!openCategory);
-
-                // اضافه شد
                 setOpenGameCategories(false);
               }}
               className="flex items-center gap-1 px-3 py-2 text-sm text-zinc-300 rounded-lg hover:bg-zinc-800 hover:text-white transition"
             >
               Categories
-
               <span
                 className={`transition-transform duration-200 ${
                   openCategory ? "rotate-180" : ""
@@ -128,37 +118,25 @@ export default function Navbar() {
 
             {openCategory && (
               <>
-                {/* overlay */}
                 <div
                   onClick={() => {
                     setOpenCategory(false);
-
-                    // اضافه شد
                     setOpenGameCategories(false);
                   }}
                   className="fixed inset-0 z-40"
                 />
-
-                {/* dropdown */}
                 <div className="absolute right-0 z-50 mt-2 w-52 rounded-xl border border-zinc-800 bg-zinc-900 shadow-xl">
-                  
                   {!openGameCategories ? (
                     <div className="p-2">
-
-                      {/* Games */}
                       <button
                         onClick={() => setOpenGameCategories(true)}
                         className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition"
                       >
                         <span>Games</span>
 
-                        <ChevronRight
-                          size={16}
-                          className="text-zinc-500"
-                        />
+                        <ChevronRight size={16} className="text-zinc-500" />
                       </button>
 
-                      {/* Products */}
                       <Link
                         href="/products"
                         onClick={() => {
@@ -169,17 +147,11 @@ export default function Navbar() {
                       >
                         <span>Products</span>
 
-                        <ChevronRight
-                          size={16}
-                          className="text-zinc-500"
-                        />
+                        <ChevronRight size={16} className="text-zinc-500" />
                       </Link>
-
                     </div>
                   ) : (
                     <div className="p-2">
-
-                      {/* Back */}
                       <button
                         onClick={() => setOpenGameCategories(false)}
                         className="mb-1 flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white transition"
@@ -190,8 +162,6 @@ export default function Navbar() {
                       </button>
 
                       <div className="border-t border-zinc-800 my-1" />
-
-                      {/* Game Categories */}
                       {category.map((cat) => (
                         <Link
                           key={cat}
@@ -206,16 +176,13 @@ export default function Navbar() {
                           </div>
                         </Link>
                       ))}
-
                     </div>
                   )}
-
                 </div>
               </>
             )}
           </div>
 
-          {/* Login */}
           {isLoged && user ? (
             <div className="relative">
               <button
@@ -234,21 +201,14 @@ export default function Navbar() {
 
               {openProfile && (
                 <>
-                  {/* Overlay */}
                   <div
                     onClick={() => setOpenProfile(false)}
                     className="fixed inset-0 z-40"
                   />
-
-                  {/* Dropdown */}
                   <div className="absolute right-0 mt-2 w-60 overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 shadow-2xl z-50">
-                    {/* User */}
                     <div className="flex items-center gap-3 border-b border-zinc-800 px-4 py-4">
                       <Image
-                        src={
-                          user.avatar_url ||
-                          "/images/default-avatar.png"
-                        }
+                        src={user.avatar_url || "/images/default-avatar.png"}
                         alt={user.username}
                         width={45}
                         height={45}
@@ -260,9 +220,7 @@ export default function Navbar() {
                           {formatUsername(user.username)}
                         </p>
 
-                        <p className="text-xs text-zinc-500">
-                          {user.email}
-                        </p>
+                        <p className="text-xs text-zinc-500">{user.email}</p>
                       </div>
                     </div>
 

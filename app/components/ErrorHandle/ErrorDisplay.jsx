@@ -9,7 +9,6 @@ export default function ErrorDisplay({
   onRetry 
 }) {
   
-  // Default configurations based on error type
   const errorConfig = {
     404: {
       icon: <Ghost className="h-24 w-24 text-purple-500 animate-pulse" />,
@@ -43,16 +42,14 @@ export default function ErrorDisplay({
 
   return (
     <div className="flex min-h-[80vh] flex-col items-center justify-center px-4 text-center">
-      {/* Gaming decorative background */}
+    
       <div className="absolute inset-0 -z-10 h-full w-full bg-zinc-950 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]"></div>
       <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-80 w-80 rounded-full bg-purple-500 opacity-20 blur-[100px]"></div>
 
-      {/* Large Icon */}
       <div className="mb-6 rounded-full bg-zinc-900/50 p-6 ring-1 ring-zinc-800 backdrop-blur-sm">
         {config.icon}
       </div>
 
-      {/* Texts */}
       <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-white md:text-5xl">
         {title || config.defaultTitle}
       </h1>
@@ -60,7 +57,6 @@ export default function ErrorDisplay({
         {message || config.defaultMessage}
       </p>
 
-      {/* Buttons */}
       <div className="flex flex-col gap-4 sm:flex-row">
         {showRetryButton && (
           <button

@@ -102,7 +102,6 @@ export default function FeaturedGames({ games }) {
           })}
         </div>
 
-        {/* Mobile View All */}
         <div className="mt-6 text-center sm:hidden">
           <Link
             href="/games"

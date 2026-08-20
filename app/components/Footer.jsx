@@ -6,10 +6,8 @@ export default function GamingFooter() {
     <footer className="w-full mt-12 border-t border-zinc-800 bg-zinc-900/80 backdrop-blur-md">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         
-        {/* Main Section: 3 Columns Grid */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           
-          {/* Column 1: Brand & Description */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <FaGamepad className="h-8 w-8 text-purple-500" />
@@ -21,7 +19,6 @@ export default function GamingFooter() {
               The ultimate destination for gamers. Consoles, games, accessories, and everything you need!
             </p>
             
-            {/* Social Media Icons */}
             <div className="flex gap-3 pt-2">
               <SocialLink href="#" icon={<FaTwitter size={18} />} label="Twitter" />
               <SocialLink href="#" icon={<FaYoutube size={18} />} label="Youtube" />
@@ -30,7 +27,6 @@ export default function GamingFooter() {
             </div>
           </div>
 
-          {/* Column 2: Store */}
           <div className="ml-90">
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
               Store
@@ -44,7 +40,6 @@ export default function GamingFooter() {
             </ul>
           </div>
 
-          {/* Column 3: Support */}
           <div className="ml-60">
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
               Support
@@ -59,7 +54,6 @@ export default function GamingFooter() {
           </div>
         </div>
 
-        {/* Bottom Section: Copyright */}
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-zinc-800 pt-6 md:flex-row">
           <p className="text-sm text-zinc-500">
             © {new Date().getFullYear()} Game Store. All rights reserved.
@@ -77,8 +71,6 @@ export default function GamingFooter() {
     </footer>
   );
 }
-
-// --- Helper Components ---
 
 function FooterLink({ href, children }) {
   return (

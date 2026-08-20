@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Heroslider({ games = [] }) {
-  
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -26,18 +25,17 @@ export default function Heroslider({ games = [] }) {
       <div className="absolute h-80 w-80 rounded-full bg-purple-500/20 blur-3xl" />
 
       <div className="relative w-full max-w-sm overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/70 p-4 backdrop-blur">
-        {/* Cover */}
         <div className="relative h-100 overflow-hidden rounded-2xl bg-zinc-800">
           <Image
-           src={game.cover_image} 
-           alt={game.name} fill 
-           loading="eager"
-           quality={80}
-           />
+            src={game.cover_image}
+            alt={game.name}
+            fill
+            loading="eager"
+            quality={80}
+          />
           <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-transparent to-transparent" />
         </div>
 
-        {/* Content */}
         <div className="mt-5">
           <span className="rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs text-purple-400">
             Best Sells

@@ -12,7 +12,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { redirect } from "next/navigation";
 
 export default function EditProfile() {
-
   const user = useAuthStore((state) => state.user);
   const updatedUser = useAuthStore((state) => state.updateUser);
 
@@ -29,7 +28,7 @@ export default function EditProfile() {
     resolver: zodResolver(editPeofileSchema),
   });
 
-  if(!user) return null;
+  if (!user) return null;
 
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
@@ -64,7 +63,6 @@ export default function EditProfile() {
   return (
     <div className="min-h-screen bg-zinc-950 px-4 py-10">
       <div className="mx-auto max-w-3xl rounded-3xl border border-zinc-800 bg-zinc-900 p-8">
-        {/* Header */}
         <div className="mb-10">
           <h1 className="text-3xl font-bold text-white">Edit Profile</h1>
 
@@ -73,7 +71,6 @@ export default function EditProfile() {
           </p>
         </div>
 
-        {/* Avatar */}
         <div className="mb-10 flex flex-col items-center">
           <div className="overflow-hidden rounded-full border-4 border-purple-500 shadow-[0_0_25px_rgba(168,85,247,.25)]">
             <Image
@@ -114,8 +111,6 @@ export default function EditProfile() {
         </div>
 
         <form className="space-y-6" onSubmit={handleSubmit(handleUpdate)}>
-          {/* Email */}
-
           <div>
             <label className="mb-2 block text-sm text-zinc-300">Email</label>
 
@@ -137,8 +132,6 @@ export default function EditProfile() {
                focus:outline-none"
             />
           </div>
-
-          {/* Name */}
 
           <div className="grid gap-5 md:grid-cols-2">
             <div>
@@ -200,8 +193,6 @@ export default function EditProfile() {
             </div>
           </div>
 
-          {/* Bio */}
-
           <div>
             <label className="mb-2 block text-sm text-zinc-300">Bio</label>
 
@@ -231,8 +222,6 @@ export default function EditProfile() {
               </div>
             )}
           </div>
-
-          {/* Buttons */}
 
           <div className="flex justify-end gap-4 pt-4">
             <button

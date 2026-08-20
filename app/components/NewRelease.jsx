@@ -47,12 +47,10 @@ export default function NewReleases({ games }) {
                   index !== 0 ? "border-t border-zinc-800" : ""
                 }`}
               >
-                {/* Number */}
                 <span className="hidden w-8 text-center text-sm font-semibold text-zinc-600 sm:block">
                   {String(index + 1).padStart(2, "0")}
                 </span>
 
-                {/* Image */}
                 <div className="relative h-24 w-20 shrink-0 overflow-hidden rounded-xl bg-zinc-800 md:h-28 md:w-24">
                   <Image
                     src={image}
@@ -61,11 +59,7 @@ export default function NewReleases({ games }) {
                     className="object-cover transition duration-500 group-hover:scale-105"
                   />
                 </div>
-
-                {/* Main Info */}
-                {/* Main Info */}
                 <div className="min-w-0 flex-1">
-                  {/* اسم + قلب کنار هم */}
                   <div className="flex items-center gap-2">
                     <h3 className="truncate text-lg font-semibold text-white transition group-hover:text-cyan-400">
                       {game.name}
@@ -95,7 +89,6 @@ export default function NewReleases({ games }) {
                   </p>
                 </div>
 
-                {/* Price */}
                 <div className="hidden min-w-24 text-right sm:block">
                   {game.discount_price ? (
                     <>
@@ -114,7 +107,6 @@ export default function NewReleases({ games }) {
                   )}
                 </div>
 
-                {/* Arrow */}
                 <span className="text-lg text-zinc-700 transition group-hover:translate-x-1 group-hover:text-cyan-400">
                   →
                 </span>
@@ -123,7 +115,6 @@ export default function NewReleases({ games }) {
           })}
         </div>
 
-        {/* Mobile View All */}
         <div className="mt-6 text-center sm:hidden">
           <Link
             href="/games"

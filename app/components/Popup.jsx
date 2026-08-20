@@ -10,7 +10,6 @@ export default function StatusPopup({ status, onClose }) {
     if (status?.type) {
       setIsVisible(true);
 
-      // بعد از ۳ ثانیه خودکار بسته بشه
       const timer = setTimeout(() => {
         setIsVisible(false);
         if (onClose) onClose();
@@ -20,10 +19,8 @@ export default function StatusPopup({ status, onClose }) {
     }
   }, [status, onClose]);
 
-  // اگه وضعیت خالی بود یا بسته شده بود، نشون نده
   if (!status?.type || !isVisible) return null;
 
-  // تنظیمات بر اساس نوع وضعیت
   const isSuccess = status.type === "success";
 
   return (

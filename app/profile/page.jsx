@@ -40,12 +40,12 @@ export default function Profile() {
   return (
     <div className="min-h-screen bg-zinc-950 px-4 py-10">
       <div className="mx-auto max-w-5xl">
-        {/* Header */}
+     
         <div className="overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900">
-          {/* Cover */}
+  
           <div className="h-40 bg-linear-to-r from-purple-700 via-purple-600 to-indigo-600" />
 
-          {/* Profile */}
+        
           <div className="relative px-8 pb-8">
             <div className="-mt-16 flex flex-col items-center md:flex-row md:items-end md:justify-between">
               <div className="flex flex-col items-center gap-6 md:flex-row md:items-end">
@@ -87,7 +87,7 @@ export default function Profile() {
           </div>
         </div>
 
-        {/* Stats */}
+      
 
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6">
@@ -118,10 +118,10 @@ export default function Profile() {
           </div>
         </div>
 
-        {/* Bottom */}
+     
 
         <div className="mt-8 grid gap-8 lg:grid-cols-2">
-          {/* Account */}
+        
 
           <div className="rounded-2xl border border-zinc-800 bg-zinc-900">
             <div className="border-b border-zinc-800 px-6 py-5">
@@ -173,7 +173,7 @@ export default function Profile() {
             </div>
           </div>
 
-          {/* Actions */}
+      
 
           <div className="rounded-2xl border border-zinc-800 bg-zinc-900">
             <div className="border-b border-zinc-800 px-6 py-5">

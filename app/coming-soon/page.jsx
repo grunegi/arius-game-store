@@ -12,7 +12,6 @@ export default function ComingSoonPage() {
     <main className="flex min-h-screen items-center justify-center bg-zinc-950 px-4 text-white">
       <div className="w-full max-w-2xl text-center">
 
-        {/* Icon */}
         <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-3xl border border-purple-500/20 bg-purple-600/10 shadow-[0_0_40px_rgba(168,85,247,0.12)]">
           <Rocket
             size={38}
@@ -20,7 +19,6 @@ export default function ComingSoonPage() {
           />
         </div>
 
-        {/* Heading */}
         <p className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-purple-400">
           Arius
         </p>
@@ -34,7 +32,6 @@ export default function ComingSoonPage() {
           This feature isn&apos;t available yet, but it&apos;s on the way.
         </p>
 
-        {/* Card */}
         <div className="mx-auto mt-10 max-w-lg rounded-3xl border border-zinc-800 bg-zinc-900 p-8">
           <div className="flex items-center justify-center gap-3">
             <Gamepad2 className="text-purple-400" size={24} />
@@ -50,7 +47,6 @@ export default function ComingSoonPage() {
           </p>
         </div>
 
-        {/* Back */}
         <Link
           href="/"
           className="mt-8 inline-flex items-center gap-2 rounded-xl border border-zinc-800 bg-zinc-900 px-5 py-3 text-sm font-medium text-zinc-300 transition hover:border-zinc-700 hover:bg-zinc-800 hover:text-white"

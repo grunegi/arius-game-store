@@ -12,7 +12,6 @@ const games = await fetchAllGames();
 export default function Games() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-5">
-      {/*game card*/}
       {games ? (
         <>
           {games.map((game) => (
@@ -27,7 +26,6 @@ export default function Games() {
                     className="object-cover transition duration-500 group-hover:scale-105"
                   />
 
-                  {/* ستون چپ: rating بالا + genre پایین */}
                   <div className="absolute top-3 left-3 flex flex-col items-start gap-2">
                     <span className="px-3 py-1 rounded-full bg-black/70 text-yellow-400 text-sm font-medium backdrop-blur-sm">
                       ⭐ {game.rating}
@@ -37,7 +35,6 @@ export default function Games() {
                     </span>
                   </div>
 
-                  {/* قلب ویش‌لیست سمت راست */}
                   <div className="absolute top-3 right-3">
                     <WishlistButton itemId={game.id} itemType="game" />
                   </div>
