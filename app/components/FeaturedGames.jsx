@@ -1,3 +1,7 @@
+"use client";
+
+import WishlistButton from "../components/WishlistButton";
+
 import Link from "next/link";
 import Image from "next/image";
 
@@ -38,13 +42,6 @@ export default function FeaturedGames({ games }) {
                 key={game.id}
                 className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 transition duration-300 hover:-translate-y-1 hover:border-purple-500/40 hover:shadow-[0_10px_40px_rgba(0,0,0,0.3)]"
               >
-                {/* لینک روی کل کارت */}
-                <Link
-                  href={`/games/${game.slug}`}
-                  className="absolute inset-0 z-0"
-                  aria-label={`View ${game.name}`}
-                />
-
                 <div className="pointer-events-none relative z-10">
                   <div className="relative aspect-3/4 overflow-hidden">
                     <Image
@@ -56,9 +53,13 @@ export default function FeaturedGames({ games }) {
 
                     <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/10 to-transparent" />
 
-                    <div className="absolute right-3 top-3 rounded-lg bg-black/70 px-2.5 py-1 text-sm font-medium text-white backdrop-blur-sm">
+                    <div className="absolute left-3 top-3 rounded-lg bg-black/70 px-2.5 py-1 text-sm font-medium text-white backdrop-blur-sm">
                       ⭐ {game.rating ?? "N/A"}
                     </div>
+                  </div>
+
+                  <div className="absolute top-3 right-3 pointer-events-auto">
+                    <WishlistButton itemId={game.id} itemType="game" />
                   </div>
 
                   <div className="p-4">

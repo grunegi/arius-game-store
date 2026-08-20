@@ -54,7 +54,7 @@ export default function Search() {
               pr-4
               text-white
               focus:outline-none
-              focus:border-white
+              focus:border-fuchsia-800
             "
       />
 

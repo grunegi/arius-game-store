@@ -1,11 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+
+import WishlistButton from "./WishlistButton";
 
 export default function NewReleases({ games }) {
   return (
     <section className="px-4 py-20">
       <div className="mx-auto max-w-7xl">
-
         {/* Header */}
         <div className="mb-8 flex items-end justify-between">
           <div>
@@ -60,14 +63,22 @@ export default function NewReleases({ games }) {
                 </div>
 
                 {/* Main Info */}
+                {/* Main Info */}
                 <div className="min-w-0 flex-1">
-                  <h3 className="truncate text-lg font-semibold text-white transition group-hover:text-cyan-400">
-                    {game.name}
-                  </h3>
+                  {/* اسم + قلب کنار هم */}
+                  <div className="flex items-center gap-2">
+                    <h3 className="truncate text-lg font-semibold text-white transition group-hover:text-cyan-400">
+                      {game.name}
+                    </h3>
 
-                  <p className="mt-1 text-sm text-zinc-500">
-                    {game.genre}
-                  </p>
+                    <WishlistButton
+                      itemId={game.id}
+                      itemType="game"
+                      size="sm"
+                    />
+                  </div>
+
+                  <p className="mt-1 text-sm text-zinc-500">{game.genre}</p>
 
                   <p className="mt-3 text-xs text-zinc-600">
                     Released{" "}
@@ -78,18 +89,9 @@ export default function NewReleases({ games }) {
                             month: "short",
                             day: "numeric",
                             year: "numeric",
-                          }
+                          },
                         )
                       : "Unknown"}
-                  </p>
-                </div>
-
-                {/* Rating */}
-                <div className="hidden text-right md:block">
-                  <p className="text-sm text-zinc-500">Rating</p>
-
-                  <p className="mt-1 font-semibold text-white">
-                    ⭐ {game.rating ?? "N/A"}
                   </p>
                 </div>
 
@@ -130,7 +132,6 @@ export default function NewReleases({ games }) {
             View All Games →
           </Link>
         </div>
-
       </div>
     </section>
   );

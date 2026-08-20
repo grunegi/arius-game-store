@@ -1,17 +1,13 @@
+"use client";
+
 import { fetchAllGames } from "../js/data-fetch";
 import ErrorDisplay from "../components/ErrorHandle/ErrorDisplay";
+import WishlistButton from "../components/WishlistButton";
 
 import Link from "next/link";
 import Image from "next/image";
 
 const games = await fetchAllGames();
-
-export async function generateMetadata() {
-  return {
-    title: games.name,
-    description: games.description,
-  };
-}
 
 export default function Games() {
   return (
@@ -30,16 +26,20 @@ export default function Games() {
                     loading="eager"
                     className="object-cover transition duration-500 group-hover:scale-105"
                   />
-                  
-                  <div className="absolute top-3 left-3">
+
+                  {/* ستون چپ: rating بالا + genre پایین */}
+                  <div className="absolute top-3 left-3 flex flex-col items-start gap-2">
                     <span className="px-3 py-1 rounded-full bg-black/70 text-yellow-400 text-sm font-medium backdrop-blur-sm">
                       ⭐ {game.rating}
                     </span>
-                  </div>
-                  <div className="absolute top-3 right-3">
                     <span className="px-3 py-1 rounded-full bg-blue-600 text-white text-xs font-semibold">
                       {game.genre}
                     </span>
+                  </div>
+
+                  {/* قلب ویش‌لیست سمت راست */}
+                  <div className="absolute top-3 right-3">
+                    <WishlistButton itemId={game.id} itemType="game" />
                   </div>
                 </div>
 

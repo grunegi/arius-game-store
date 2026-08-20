@@ -1,19 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import WishlistButton from "./WishlistButton";
+
 import Image from "next/image";
 import Link from "next/link";
-import { Star, ArrowRight, Heart } from "lucide-react";
+import { Star, ArrowRight } from "lucide-react";
 
 export default function AccessoriesSection({ products }) {
-
-  const [wishlist, setWishlist] = useState([]);
-
-  const toggleWish = (id) => {
-    setWishlist((w) =>
-      w.includes(id) ? w.filter((x) => x !== id) : [...w, id]
-    );
-  };
 
   if (!products.length) return null;
 
@@ -38,9 +31,7 @@ export default function AccessoriesSection({ products }) {
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {products.slice(0, 4).map((p) => {
           const price = p.discount_price || p.price;
-          const hasDiscount =
-            p.discount_price && p.discount_price < p.price;
-          const wished = wishlist.includes(p.id);
+          const hasDiscount = p.discount_price && p.discount_price < p.price;
 
           return (
             <Link
@@ -56,25 +47,13 @@ export default function AccessoriesSection({ products }) {
                   className="object-cover transition group-hover:scale-105"
                 />
 
+                <div className="absolute top-3 right-3">
+                  <WishlistButton itemId={p.id} itemType="product" />
+                </div>
+
                 <span className="absolute left-3 top-3 rounded-full bg-zinc-950/80 px-2.5 py-1 text-xs capitalize text-green-300">
                   {p.category}
                 </span>
-
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    toggleWish(p.id);
-                  }}
-                  className="absolute right-3 top-3 rounded-full bg-zinc-950/80 p-2 transition hover:bg-zinc-950"
-                >
-                  <Heart
-                    className={`h-4 w-4 transition ${
-                      wished
-                        ? "fill-red-500 text-red-500"
-                        : "text-zinc-300"
-                    }`}
-                  />
-                </button>
               </div>
 
               <div className="p-4">
