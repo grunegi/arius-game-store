@@ -88,25 +88,10 @@ export default function WishlistPage() {
 
     window.addEventListener("wishlist-changed", fetchWishlist);
     return () => window.removeEventListener("wishlist-changed", fetchWishlist);
-  }, [user?.id]);
+  }, [user?.id, data]);
 
   if (loading) {
     return <Loader />;
-  }
-
-  if (!user?.id) {
-    return (
-      <div className="flex flex-col items-center justify-center gap-4 min-h-screen">
-        <HeartOff className="h-16 w-16 text-zinc-700" />
-        <p className="text-zinc-400">Please login to view your wishlist</p>
-        <Link
-          href="/login"
-          className="px-6 py-3 rounded-lg bg-purple-800 hover:bg-purple-600 text-white"
-        >
-          Login
-        </Link>
-      </div>
-    );
   }
 
   const { games, products } = data;

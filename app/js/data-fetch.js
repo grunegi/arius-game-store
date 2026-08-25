@@ -51,12 +51,11 @@ export async function searchResult(query) {
 }
 
 
-{/*category*/}
-export async function category(genre) {
+{/*categorys for navbar*/}
+export async function categorysForNavbar() {
   const {data, error} = await supabase
     .from("games")
-    .select("*")
-    .eq("genre", genre);
+    .select("genre")
 
   if(error) {
     console.log(error);
@@ -67,15 +66,15 @@ export async function category(genre) {
 }
 
 
-{/*categorys for navbar*/}
-export async function categorysForNavbar() {
+{/*read games of the selected category*/}
+export async function category(slug) {
   const {data, error} = await supabase
     .from("games")
-    .select("genre")
+    .select("*")
+    .eq("genre", `${slug}`)
 
   if(error) {
-    console.log(error);
-    return[];
+    console.log("error is : ", error);
   }
 
   return data;

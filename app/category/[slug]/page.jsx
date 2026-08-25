@@ -46,6 +46,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Category({ params }) {
+
   const { slug } = await params;
   const cat = await category(slug);
 

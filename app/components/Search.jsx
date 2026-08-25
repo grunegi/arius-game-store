@@ -1,5 +1,7 @@
 "use client";
 
+import FilteredButton from "../components/FilteredButton";
+
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
@@ -54,9 +56,13 @@ export default function Search() {
               pr-4
               text-white
               focus:outline-none
-              focus:border-fuchsia-800
+              focus:border-purple-700
             "
       />
+
+      <div className="pl-3">
+        <FilteredButton />
+      </div>
 
       <button
         onClick={handleClick}

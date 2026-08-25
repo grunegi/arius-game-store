@@ -6,6 +6,8 @@ import {
   updateCartItemQuantity,
 } from "../js/cart-api";
 
+import { addToOrder } from "../js/orders-api";
+
 import { supabase } from "@/app/lib/Supabase";
 import useAuthStore from "../js/AuthStore";
 import Loader from "../components/Loader";
@@ -124,7 +126,7 @@ export default function Cart() {
 
     try {
       await updateCartItemQuantity(user.id, item.game_id, newQuantity);
-  
+
       if (newQuantity <= 0) {
         setCartItems((prev) => prev.filter((i) => i.game_id !== item.game_id));
       } else {
@@ -139,13 +141,41 @@ export default function Cart() {
     }
   };
 
+  const sendToOrders = async () => {
+    if (!user?.id) {
+      alert("Please login first!");
+      return;
+    }
+
+    try {
+
+      const orderItems = cartItems.map((item) => ({
+        id: item.games.id,
+        type: "game",
+        name: item.games.name,
+        price: item.games.discount_price || item.games.price,
+        quantity: item.quantity,
+      }));
+
+      await addToOrder(user.id, orderItems);
+
+      const cart = await getOrCreateCart(user.id);
+      await supabase.from("cart_items").delete().eq("cart_id", cart.id);
+
+      setCartItems([]);
+
+    } catch (error) {
+      console.error("Checkout failed:", error);
+      alert(error?.message || "خطا در ثبت سفارش. لطفاً دوباره تلاش کنید.");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-zinc-950 px-6 py-10">
       <div className="mx-auto max-w-7xl">
         <h1 className="mb-8 text-4xl font-bold text-white">Shopping Cart</h1>
 
         <div className="grid gap-8 lg:grid-cols-[2fr_380px]">
-          {/* Cart Items */}
           <div className="space-y-5">
             {items.map((item) => {
               const games = item.games || {};
@@ -178,11 +208,8 @@ export default function Cart() {
                         </p>
                       </div>
 
-                      {/* ⬇️ ردیف جدید: تعداد + قیمت + دکمه حذف */}
                       <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
-                        {/* کنترل تعداد */}
                         <div className="flex items-center gap-2">
-                          {/* دکمه کاهش */}
                           <button
                             onClick={() => handleDecrement(item)}
                             className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-700 text-zinc-300 transition hover:bg-zinc-800 hover:border-zinc-600"
@@ -190,12 +217,10 @@ export default function Cart() {
                             <Minus className="h-4 w-4" />
                           </button>
 
-                          {/* تعداد */}
                           <span className="w-10 text-center text-lg font-semibold text-white">
                             {item.quantity || 0}
                           </span>
 
-                          {/* دکمه افزایش */}
                           <button
                             onClick={() => handleIncrement(item)}
                             className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-700 text-zinc-300 transition hover:bg-zinc-800 hover:border-zinc-600"
@@ -204,7 +229,6 @@ export default function Cart() {
                           </button>
                         </div>
 
-                        {/* قیمت */}
                         <div className="flex items-center gap-3">
                           {hasDiscount && (
                             <span className="text-zinc-500 line-through">
@@ -216,7 +240,6 @@ export default function Cart() {
                           </span>
                         </div>
 
-                        {/* دکمه حذف */}
                         <button
                           onClick={() => handleRemove(item.game_id)}
                           className="flex items-center gap-2 rounded-lg border border-red-500/30 px-4 py-2 text-sm font-medium text-red-400 transition hover:bg-red-500/10 hover:border-red-500/50"
@@ -232,7 +255,6 @@ export default function Cart() {
             })}
           </div>
 
-          {/* Order Summary */}
           <div className="h-fit rounded-2xl border border-zinc-800 bg-zinc-900 p-6 lg:sticky lg:top-24">
             <h2 className="text-2xl font-semibold text-white">Order Summary</h2>
 
@@ -257,7 +279,10 @@ export default function Cart() {
               </div>
             </div>
 
-            <button className="mt-8 w-full rounded-xl bg-purple-600 py-4 text-lg font-semibold text-white transition hover:bg-purple-500">
+            <button
+              onClick={sendToOrders}
+              className="mt-8 w-full rounded-xl bg-purple-600 py-4 text-lg font-semibold text-white transition hover:bg-purple-500"
+            >
               Proceed to Checkout
             </button>
           </div>
