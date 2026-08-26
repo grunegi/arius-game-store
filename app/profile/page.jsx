@@ -40,12 +40,9 @@ export default function Profile() {
   return (
     <div className="min-h-screen bg-zinc-950 px-4 py-10">
       <div className="mx-auto max-w-5xl">
-     
         <div className="overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900">
-  
           <div className="h-40 bg-linear-to-r from-purple-700 via-purple-600 to-indigo-600" />
 
-        
           <div className="relative px-8 pb-8">
             <div className="-mt-16 flex flex-col items-center md:flex-row md:items-end md:justify-between">
               <div className="flex flex-col items-center gap-6 md:flex-row md:items-end">
@@ -87,8 +84,6 @@ export default function Profile() {
           </div>
         </div>
 
-      
-
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6">
             <Package className="mb-3 text-purple-400" size={28} />
@@ -118,11 +113,7 @@ export default function Profile() {
           </div>
         </div>
 
-     
-
         <div className="mt-8 grid gap-8 lg:grid-cols-2">
-        
-
           <div className="rounded-2xl border border-zinc-800 bg-zinc-900">
             <div className="border-b border-zinc-800 px-6 py-5">
               <h2 className="text-xl font-semibold text-white">
@@ -173,8 +164,6 @@ export default function Profile() {
             </div>
           </div>
 
-      
-
           <div className="rounded-2xl border border-zinc-800 bg-zinc-900">
             <div className="border-b border-zinc-800 px-6 py-5">
               <h2 className="text-xl font-semibold text-white">
@@ -183,24 +172,29 @@ export default function Profile() {
             </div>
 
             <div className="p-3">
-              <button className="flex w-full items-center justify-between rounded-xl px-4 py-4 text-zinc-300 transition hover:bg-zinc-800">
-                <div className="flex items-center gap-3">
-                  <Heart className="text-red-400" />
-                  Wishlist
-                </div>
+              <Link href="/wishlist">
+                <button className="flex w-full items-center justify-between rounded-xl px-4 py-4 text-zinc-300 transition hover:bg-zinc-800">
+                  <div className="flex items-center gap-3">
+                    <Heart className="text-red-400" />
+                    Wishlist
+                  </div>
 
-                <ChevronRight />
-              </button>
+                  <ChevronRight />
+                </button>
+              </Link>
 
-              <button className="mt-2 flex w-full items-center justify-between rounded-xl px-4 py-4 text-zinc-300 transition hover:bg-zinc-800">
-                <div className="flex items-center gap-3">
-                  <ShoppingCart className="text-green-400" />
-                  Shopping Cart
-                </div>
+              <Link href="/cart">
+                <button className="mt-2 flex w-full items-center justify-between rounded-xl px-4 py-4 text-zinc-300 transition hover:bg-zinc-800">
+                  <div className="flex items-center gap-3">
+                    <ShoppingCart className="text-green-400" />
+                    Shopping Cart
+                  </div>
 
-                <ChevronRight />
-              </button>
+                  <ChevronRight />
+                </button>
+              </Link>
 
+              <Link href = "/orders">
               <button className="mt-2 flex w-full items-center justify-between rounded-xl px-4 py-4 text-zinc-300 transition hover:bg-zinc-800">
                 <div className="flex items-center gap-3">
                   <Package className="text-blue-400" />
@@ -209,7 +203,9 @@ export default function Profile() {
 
                 <ChevronRight />
               </button>
+              </Link>
 
+              <Link href = "/setting">
               <button className="mt-2 flex w-full items-center justify-between rounded-xl px-4 py-4 text-zinc-300 transition hover:bg-zinc-800">
                 <div className="flex items-center gap-3">
                   <Settings className="text-yellow-400" />
@@ -218,6 +214,7 @@ export default function Profile() {
 
                 <ChevronRight />
               </button>
+              </Link>
 
               <button
                 onClick={() => {

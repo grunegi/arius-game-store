@@ -3,9 +3,11 @@
 import { filteredGame } from "../../js/data-fetch";
 import ErrorDisplay from "../../components/ErrorHandle/ErrorDisplay";
 import StatusPopup from "../../components/StatusPopup";
+import Video from "../../components/Video";
 import useAuthStore from "../../js/AuthStore";
-
+import GameDetailGallery from "../../components/GameDetailGallery";
 import { getOrCreateCart, addToCart } from "../../js/cart-api";
+
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
@@ -103,36 +105,32 @@ export default function GameDetail({ params }) {
     <div>
       <main className="min-h-screen bg-zinc-950 text-white">
         <div className="max-w-7xl mx-auto px-6 py-10">
-          <section className="grid lg:grid-cols-[2fr_1fr] gap-6">
-            <div className="relative overflow-hidden object-cover object-center rounded-2xl border border-zinc-800 h-137.5">
-              <Image
-                src={coverImage}
-                alt={game.name}
-                fill
-                loading="eager"
-                className="bg-zinc-900 object-cover"
-                priority
-                onError={(e) => {
-                  e.target.src = "/images/placeholder.jfif";
-                }}
-              />
+          <section className="grid gap-6 lg:grid-cols-[2fr_1fr]">
+            {/* ستون چپ */}
+            <div className="flex min-w-0 flex-col gap-6">
+              {/* عکس بزرگ — نسبت 16:9 به جای ارتفاع ثابت */}
+              <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900">
+                <Video />
+              </div>
+
+              <GameDetailGallery game={game} />
             </div>
 
-            <aside className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
-              <div className="relative aspect-0.5/0.5 rounded-xl mb-6 overflow-hidden">
+            <aside className="relative min-w-0 bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+              <div className="relative aspect-3/4 w-full overflow-hidden rounded-xl mb-6 bg-zinc-800">
                 <Image
                   src={coverImage}
                   alt={game.name}
                   fill
                   loading="eager"
-                  className="relative object-cover"
+                  className="object-cover relative"
                   onError={(e) => {
                     e.target.src = "/images/placeholder.jfif";
                   }}
                 />
               </div>
 
-              <div className="space-y-5">
+              <div className="grid grid-cols-2 gap-5">
                 <div>
                   <p className="text-zinc-500 text-sm">Genre</p>
                   <p className="font-medium">{game.genre}</p>
