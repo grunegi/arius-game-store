@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function GameDetail({ params }) {
+  
   const user = useAuthStore((state) => state.user);
 
   const [game, setGame] = useState(null);

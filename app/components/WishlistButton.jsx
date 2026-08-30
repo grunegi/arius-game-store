@@ -3,24 +3,28 @@
 import { useState, useEffect } from "react";
 import { Heart } from "lucide-react";
 import useAuthStore from "../js/AuthStore";
+import StatusPopup from "../components/StatusPopup";
 import { toggleWishlistItem, isItemWished } from "../js/wishlist-api";
 
 export default function WishlistButton({
   itemId,
   itemType = "game",
   size = "md",
-}) {
+}) { {/*( { ) <=== i dont know what is this but without it code will not work*/}
+
   const user = useAuthStore((state) => state.user);
   const [wished, setWished] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState({});
 
   useEffect(() => {
     if (!user?.id) return;
 
     const checkStatus = async () => {
       try {
-        const status = await isItemWished(user.id, itemId, itemType);
-        setWished(status);
+        const result = await isItemWished(user.id, itemId, itemType);
+        setWished(result);
+
       } catch (error) {
         console.error("Error checking wishlist:", error);
       }
@@ -28,6 +32,7 @@ export default function WishlistButton({
 
     checkStatus();
   }, [user?.id, itemId, itemType]);
+
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -41,9 +46,24 @@ export default function WishlistButton({
     try {
       setLoading(true);
       const result = await toggleWishlistItem(user.id, itemId, itemType);
+
+      if (result.action === "added") {
+        setStatus({
+          type: "success",
+          title: "Success!",
+          message: "successfully added to your Wishlist",
+        });
+      }
+
       setWished(result.action === "added");
     } catch (error) {
       console.error("Error toggling wishlist:", error);
+
+      setStatus({
+        type: "error",
+        title: "Error",
+        message: "Failed to add the game to your Wishlist. Please try again",
+      });
     } finally {
       setLoading(false);
     }
@@ -56,19 +76,25 @@ export default function WishlistButton({
   };
 
   return (
-    <button
-      onClick={handleClick}
-      disabled={loading}
-      className="rounded-full bg-zinc-700/80 p-2 backdrop-blur-sm transition hover:bg-zinc-700-600 active:scale-90 disabled:opacity-50"
-      aria-label={wished ? "Remove from wishlist" : "Add to wishlist"}
-    >
-      <Heart
-        className={`
+    <div>
+      <button
+        onClick={handleClick}
+        disabled={loading}
+        className="rounded-full bg-zinc-700/80 p-2 backdrop-blur-sm transition hover:bg-zinc-700-600 active:scale-90 disabled:opacity-50"
+        aria-label={wished ? "Remove from wishlist" : "Add to wishlist"}
+      >
+        <Heart
+          className={`
           ${sizes[size]} 
           transition-all duration-300
           ${wished ? "fill-red-600 text-red-700" : "fill-none text-white"}
         `}
-      />
-    </button>
+        />
+      </button>
+
+      <div dir="rtl">
+        <StatusPopup status={status} onClose={() => setStatus(null)} />
+      </div>
+    </div>
   );
 }

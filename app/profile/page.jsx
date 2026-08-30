@@ -32,6 +32,9 @@ export default function Profile() {
   if (!user) return null;
 
   function formatUsername(text) {
+
+     if (!text) return "User";
+
     return text
       .replace(/_/g, " ")
       .replace(/\b\w/g, (char) => char.toUpperCase());

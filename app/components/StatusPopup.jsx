@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { CheckCircle2, XCircle, X } from "lucide-react";
 
 export default function StatusPopup({ status, onClose }) {
@@ -23,15 +24,17 @@ export default function StatusPopup({ status, onClose }) {
 
   const isSuccess = status.type === "success";
 
-  return (
-    <div className="fixed top-6 right-6 z-[9999] animate-slide-in">
+  // 👇 Portal: رندر مستقیم به body، فرار از همه transform ها
+  return createPortal(
+    <div className="fixed top-6 right-6 z-9999 animate-slide-in">
       <div
         className={`
           flex items-center gap-3 rounded-2xl border px-5 py-4 
           shadow-2xl backdrop-blur-sm
-          ${isSuccess
-            ? "border-green-500/30 bg-zinc-900 shadow-green-500/10"
-            : "border-red-500/30 bg-zinc-900 shadow-red-500/10"
+          ${
+            isSuccess
+              ? "border-green-500/30 bg-zinc-900 shadow-green-500/10"
+              : "border-red-500/30 bg-zinc-900 shadow-red-500/10"
           }
         `}
       >
@@ -70,6 +73,7 @@ export default function StatusPopup({ status, onClose }) {
           <X className="h-4 w-4" />
         </button>
       </div>
-    </div>
+    </div>,
+    document.body, // ← مقصد Portal
   );
 }
