@@ -5,21 +5,22 @@ export default function GamingFooter() {
   return (
     <footer className="w-full mt-12 border-t border-zinc-800 bg-zinc-900/80 backdrop-blur-md">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          
-          <div className="space-y-4">
+        {/* ─────── ستون‌ها ─────── */}
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
+          {/* ستون ۱: لوگو + توضیح + سوشال */}
+          <div className="flex flex-col items-center text-center md:items-start md:text-left">
             <div className="flex items-center gap-3">
               <FaGamepad className="h-8 w-8 text-purple-500" />
               <h3 className="text-2xl font-bold text-white">
                 Arius <span className="text-purple-500">Store</span>
               </h3>
             </div>
-            <p className="text-sm leading-relaxed text-zinc-400">
+
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-zinc-400">
               The ultimate destination for gamers. Consoles, games, accessories, and everything you need!
             </p>
-            
-            <div className="flex gap-3 pt-2">
+
+            <div className="mt-5 flex gap-3">
               <SocialLink href="#" icon={<FaTwitter size={18} />} label="Twitter" />
               <SocialLink href="#" icon={<FaYoutube size={18} />} label="Youtube" />
               <SocialLink href="#" icon={<FaTwitch size={18} />} label="Twitch" />
@@ -27,7 +28,8 @@ export default function GamingFooter() {
             </div>
           </div>
 
-          <div className="ml-90">
+          {/* ستون ۲: Store */}
+          <div className="text-center md:text-left">
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
               Store
             </h4>
@@ -40,7 +42,8 @@ export default function GamingFooter() {
             </ul>
           </div>
 
-          <div className="ml-60">
+          {/* ستون ۳: Support */}
+          <div className="text-center md:text-left">
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
               Support
             </h4>
@@ -54,9 +57,10 @@ export default function GamingFooter() {
           </div>
         </div>
 
+        {/* ─────── پایین فوتر ─────── */}
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-zinc-800 pt-6 md:flex-row">
           <p className="text-sm text-zinc-500">
-            © {new Date().getFullYear()} Game Store. All rights reserved.
+            © {new Date().getFullYear()} Arius Store. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm">
             <Link href="/privacy" className="text-zinc-500 transition-colors hover:text-purple-400">
@@ -75,8 +79,8 @@ export default function GamingFooter() {
 function FooterLink({ href, children }) {
   return (
     <li>
-      <Link 
-        href={href} 
+      <Link
+        href={href}
         className="text-sm text-zinc-400 transition-colors hover:text-purple-400"
       >
         {children}
