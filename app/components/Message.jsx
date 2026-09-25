@@ -44,18 +44,18 @@ export default function Message({
 
   return (
     <div
-      className={`mt-3 flex items-start gap-3 rounded-xl border ${style.border} ${style.bg} px-4 py-3 backdrop-blur-sm`}
+      className={`mt-3 flex w-full items-start gap-3 rounded-xl border ${style.border} ${style.bg} px-3 py-3 backdrop-blur-sm sm:px-4 sm:py-3`}
     >
-      <div className={style.text}>
+      <div className={`shrink-0 ${style.text}`}>
         {style.icon}
       </div>
 
-      <div>
-        <p className={`font-semibold ${style.text}`}>
+      <div className="min-w-0 flex-1">
+        <p className={`font-semibold text-sm sm:text-base ${style.text}`}>
           {title}
         </p>
 
-        <p className="mt-1 text-sm leading-6 text-zinc-300">
+        <p className="mt-1 wrap-break-word text-xs leading-5 text-zinc-300 sm:text-sm sm:leading-6">
           {message}
         </p>
       </div>

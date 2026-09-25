@@ -18,13 +18,11 @@ export default function FilterButton() {
   };
 
   const applyFilter = () => {
-    // اگر هیچ فیلتری انتخاب نشده
     if (price === null && rating === "all") {
       setIsOpen(false);
       return;
     }
 
-    // فقط Price
     if (price !== null && rating === "all") {
       router.push(`/filter?filter=price&value=${price}`);
       setIsOpen(false);

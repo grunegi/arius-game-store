@@ -13,7 +13,7 @@ export default function StatusPopup({ status, onClose }) {
 
       const timer = setTimeout(() => {
         setIsVisible(false);
-        if (onClose) onClose();
+        onClose?.();
       }, 3000);
 
       return () => clearTimeout(timer);
@@ -24,23 +24,42 @@ export default function StatusPopup({ status, onClose }) {
 
   const isSuccess = status.type === "success";
 
-  // 👇 Portal: رندر مستقیم به body، فرار از همه transform ها
   return createPortal(
-    <div className="fixed top-6 right-6 z-9999 animate-slide-in">
+    <div
+      className="
+        fixed
+        top-4 right-4
+        z-9999
+        w-[calc(100%-2rem)]
+        max-w-md
+        sm:top-6 sm:right-6 sm:w-auto
+        animate-slide-in
+      "
+    >
       <div
         className={`
-          flex items-center gap-3 rounded-2xl border px-5 py-4 
-          shadow-2xl backdrop-blur-sm
+          flex items-center gap-3
+          rounded-2xl
+          border
+          px-4 py-3 sm:px-5 sm:py-4
+          shadow-2xl
+          backdrop-blur-sm
+
           ${
             isSuccess
-              ? "border-green-500/30 bg-zinc-900 shadow-green-500/10"
-              : "border-red-500/30 bg-zinc-900 shadow-red-500/10"
+              ? "border-green-500/30 bg-zinc-900/95 shadow-green-500/10"
+              : "border-red-500/30 bg-zinc-900/95 shadow-red-500/10"
           }
         `}
       >
+        {/* Icon */}
         <div
           className={`
-            flex h-10 w-10 items-center justify-center rounded-full
+            flex
+            h-10 w-10
+            shrink-0
+            items-center justify-center
+            rounded-full
             ${isSuccess ? "bg-green-500/20" : "bg-red-500/20"}
           `}
         >
@@ -51,11 +70,13 @@ export default function StatusPopup({ status, onClose }) {
           )}
         </div>
 
-        <div>
-          <p className="font-semibold text-white">
+        {/* Content */}
+        <div className="min-w-0 flex-1">
+          <p className="truncate font-semibold text-white">
             {status.title || (isSuccess ? "Success!" : "Failed!")}
           </p>
-          <p className="text-sm text-zinc-400">
+
+          <p className="mt-0.5 text-sm leading-5 text-zinc-400">
             {status.message ||
               (isSuccess
                 ? "Operation completed successfully."
@@ -63,17 +84,29 @@ export default function StatusPopup({ status, onClose }) {
           </p>
         </div>
 
+        {/* Close */}
         <button
+          type="button"
           onClick={() => {
             setIsVisible(false);
-            if (onClose) onClose();
+            onClose?.();
           }}
-          className="ml-2 rounded-lg p-1 text-zinc-500 transition hover:bg-zinc-800 hover:text-white"
+          className="
+            ml-auto
+            shrink-0
+            rounded-lg
+            p-1.5
+            text-zinc-500
+            transition
+            hover:bg-zinc-800
+            hover:text-white
+          "
+          aria-label="Close notification"
         >
           <X className="h-4 w-4" />
         </button>
       </div>
     </div>,
-    document.body, // ← مقصد Portal
+    document.body
   );
 }
