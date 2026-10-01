@@ -39,7 +39,11 @@ export default function WishlistButton({
     e.stopPropagation();
 
     if (!user?.id) {
-      alert("Please login first!");
+      setStatus({
+          type: "fail",
+          title: "Failed",
+          message: "please login first",
+        });
       return;
     }
 

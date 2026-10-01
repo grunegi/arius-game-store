@@ -57,11 +57,9 @@ export async function isItemWished(userId, itemId, itemType = "game") {
 export async function toggleWishlistItem(userId, itemId, itemType = "game") {
   const wishlist = await getOrCreateWishlist(userId);
 
-  // چک کن وجود داره یا نه
   const exists = await isItemWished(userId, itemId, itemType);
 
   if (exists) {
-    // حذف کن
     const { error } = await supabase
       .from("wishlist_items")
       .delete()
@@ -72,7 +70,6 @@ export async function toggleWishlistItem(userId, itemId, itemType = "game") {
     if (error) throw error;
     return { action: "removed" };
   } else {
-    // اضافه کن
     const { error } = await supabase
       .from("wishlist_items")
       .insert({
